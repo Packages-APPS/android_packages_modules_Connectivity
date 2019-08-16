@@ -28,6 +28,7 @@ import static android.net.ConnectivityManager.ACTION_RESTRICT_BACKGROUND_CHANGED
 import static android.net.ConnectivityManager.CONNECTIVITY_ACTION;
 import static android.net.ConnectivityManager.EXTRA_NETWORK_INFO;
 import static android.net.NetworkCapabilities.NET_CAPABILITY_NOT_VPN;
+import static android.net.NetworkCapabilities.NET_CAPABILITY_NOT_VPN;
 import static android.net.NetworkStack.PERMISSION_MAINLINE_NETWORK_STACK;
 import static android.net.TetheringManager.ACTION_TETHER_STATE_CHANGED;
 import static android.net.TetheringManager.CONNECTIVITY_SCOPE_LOCAL;
@@ -440,8 +441,8 @@ public class Tethering {
                 mTetherMainSM.sendMessage(TetherMainSM.CMD_UPSTREAM_CHANGED);
             }
         };
-        mContext.getContentResolver().registerContentObserver(LineageSettings.Secure.getUriFor(
-                LineageSettings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS), false, vpnSettingObserver);
+        mContext.getContentResolver().registerContentObserver(Settings.Secure.getUriFor(
+                Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS), false, vpnSettingObserver);
     }
 
     private class TetheringThreadExecutor implements Executor {

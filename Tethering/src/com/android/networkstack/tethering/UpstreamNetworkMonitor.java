@@ -39,6 +39,7 @@ import android.net.NetworkRequest;
 import android.net.util.PrefixUtils;
 import android.net.util.SharedLog;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseIntArray;
 
@@ -202,6 +203,7 @@ public class UpstreamNetworkMonitor {
 
         mTetheringUpstreamNetwork = null;
         mVpnInternetNetwork = null;
+        mVpnInternetNetwork = null;
         mNetworkMap.clear();
     }
 
@@ -335,8 +337,13 @@ public class UpstreamNetworkMonitor {
     public UpstreamNetworkState getCurrentPreferredUpstream() {
         // Use VPN upstreams if hotspot settings allow.
         if (mVpnInternetNetwork != null &&
+<<<<<<< HEAD
                 LineageSettings.Secure.getInt(mContext.getContentResolver(),
                         LineageSettings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS, 0) == 1) {
+=======
+                Settings.Secure.getInt(mContext.getContentResolver(),
+                        Settings.Secure.TETHERING_ALLOW_VPN_UPSTREAMS, 0) == 1) {
+>>>>>>> d2e561cd6 (Tethering: Add capability to allow tethering to use VPN upstreams [2/3])
             return mNetworkMap.get(mVpnInternetNetwork);
         }
         final UpstreamNetworkState dfltState = (mDefaultInternetNetwork != null)
